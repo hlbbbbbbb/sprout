@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sprout-agents"
+version = "0.2.0"
+description = "Self-growing task tree for LLM agents. Each agent decides its own split — recursive, not predefined."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Yang Huang" },
+]
+keywords = ["multi-agent", "llm", "task-tree", "autonomous-agents", "recursive", "agent-framework"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "litellm>=1.30.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "ruff>=0.4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/hlbbbbbbb/sprout"
+Repository = "https://github.com/hlbbbbbbb/sprout"
+Issues = "https://github.com/hlbbbbbbb/sprout/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["sprout"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+# Line length is not enforced: LLM prompt strings and inline test fixtures are
+# intentionally long, and wrapping them hurts readability.
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
