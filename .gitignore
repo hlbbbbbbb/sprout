@@ -79,5 +79,4 @@ CLAUDE.md
 logs/
 
 # Project-specific
-benchmark_results/
 *.out

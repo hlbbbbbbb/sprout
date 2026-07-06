@@ -59,8 +59,8 @@ Every node — root, child, grandchild — runs the same three-phase flow. That'
 ### Quick start
 
 ```bash
-git clone https://github.com/YangHuang2280/Sprout.git
-cd Sprout
+git clone https://github.com/hlbbbbbbb/sprout.git
+cd sprout
 pip install -e .
 ```
 
@@ -105,6 +105,23 @@ We ran a controlled benchmark (`examples/benchmark.py`) comparing single-agent v
 - **When tokens are abundant**: quality is comparable; the speedup from parallelism is real but modest (network, rate limits).
 
 **Takeaway: Sprout's main value isn't parallel speed — it's breaking past the token/attention bottleneck of a single LLM call.**
+
+#### Reproduce it
+
+```bash
+# Real benchmark (spends API credits — hits the LLM twice)
+export ZHIPU_API_KEY=...
+python examples/benchmark.py
+
+# Offline verification (no network, no API key)
+python examples/rubric_demo.py
+```
+
+`rubric_demo.py` feeds two fixed answers — one complete, one that only finishes
+one module — through the exact same scorer, printing 100 vs 25. Note: LLM output
+is stochastic, so real benchmark scores drift within a small band; the rubric
+itself is deterministic regex scoring, so identical answer text always scores the
+same.
 
 ### Project layout
 
@@ -186,8 +203,8 @@ Sprout 是一个多 Agent 框架，让 **Agent 自己长出任务树**。给它�
 ### 快速开始
 
 ```bash
-git clone https://github.com/YangHuang2280/Sprout.git
-cd Sprout
+git clone https://github.com/hlbbbbbbb/sprout.git
+cd sprout
 pip install -e .
 ```
 
@@ -232,6 +249,21 @@ asyncio.run(main())
 - **当 token 充足时**：质量基本持平，并行加速有但不显著（网络延迟 + 限流拖累）。
 
 **结论：Sprout 的核心价值不是并行加速，而是突破单次 LLM 调用的 token / 注意力瓶颈。**
+
+#### 复现
+
+```bash
+# 真实跑分（会消耗 API 费用——调两次 LLM）
+export ZHIPU_API_KEY=...
+python examples/benchmark.py
+
+# 离线验证（不联网、不需要 API key）
+python examples/rubric_demo.py
+```
+
+`rubric_demo.py` 把两份固定答案——一份完整、一份只完成一个模块——喂给完全相同的评分器，
+打印出 100 vs 25。说明：LLM 输出有随机性，真实跑分的分数会在小范围内波动；但 rubric 本身
+是确定性的正则评分，同样的答案文本永远得同样的分。
 
 ### 项目结构
 

@@ -302,9 +302,9 @@ def print_report(single: BenchmarkResult, multi: BenchmarkResult):
 
 async def main():
     print("=" * 65)
-    print("  SWARMFLOW BENCHMARK: Single-Agent vs Multi-Agent")
+    print("  SPROUT BENCHMARK: Single-Agent vs Multi-Agent")
     print("  Task: Implement 4 independent Python modules")
-    print("  Model: GLM-5.1")
+    print(f"  Model: {SHARED_CONFIG['model']}")
     print("=" * 65)
 
     print("\n>>> Running SINGLE-AGENT mode (no splitting)...")
